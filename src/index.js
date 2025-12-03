@@ -1,6 +1,11 @@
 import express from 'express';
 import multer from 'multer';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { generateComicStrip } from './generator.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -13,10 +18,10 @@ const upload = multer({
 });
 
 app.use(express.json({ limit: '50mb' }));
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('/', (req, res) => {
-  res.sendFile('index.html', { root: 'public' });
+  res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 app.post('/api/generate', async (req, res) => {
