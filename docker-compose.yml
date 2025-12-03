@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  comic-api:
+    build: .
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    # Optional: Add resource limits
+    deploy:
+      resources:
+        limits:
+          memory: 1G
