@@ -1,0 +1,89 @@
+{
+  "title": "My First Comic",
+  "width": 1200,
+  "height": "auto",
+  "backgroundColor": "#f5f5f5",
+  "rows": [
+    {
+      "columns": 2,
+      "panels": [
+        {
+          "image": "https://picsum.photos/600/400?random=1",
+          "imagePosition": "center",
+          "imageSize": "cover",
+          "borderWidth": "5px",
+          "borderColor": "#000000",
+          "dialogBubbles": [
+            {
+              "text": "What a beautiful day!",
+              "position": { "top": "15%", "left": "20%" },
+              "type": "speech",
+              "fontSize": "16px"
+            }
+          ]
+        },
+        {
+          "image": "https://picsum.photos/600/400?random=2",
+          "imagePosition": "center",
+          "imageSize": "cover",
+          "borderWidth": "5px",
+          "dialogBubbles": [
+            {
+              "text": "I wonder what will happen next...",
+              "position": { "top": "20%", "left": "60%" },
+              "type": "thought",
+              "fontSize": "14px"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "columns": 1,
+      "panels": [
+        {
+          "image": "https://picsum.photos/1200/400?random=3",
+          "imagePosition": "center",
+          "imageSize": "cover",
+          "borderWidth": "6px",
+          "narration": {
+            "text": "Meanwhile, across the city...",
+            "backgroundColor": "#ffffcc",
+            "fontSize": "14px",
+            "padding": "12px"
+          }
+        }
+      ]
+    },
+    {
+      "columns": 2,
+      "panels": [
+        {
+          "image": "https://picsum.photos/600/400?random=4",
+          "borderWidth": "5px",
+          "dialogBubbles": [
+            {
+              "text": "Did you hear that?",
+              "position": { "top": "30%", "left": "15%" },
+              "type": "speech",
+              "fontSize": "15px"
+            }
+          ]
+        },
+        {
+          "image": "https://picsum.photos/600/400?random=5",
+          "borderWidth": "5px",
+          "dialogBubbles": [
+            {
+              "text": "Yes! Let's go!",
+              "position": { "top": "40%", "left": "50%" },
+              "type": "speech",
+              "fontSize": "16px",
+              "maxWidth": "150px"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
