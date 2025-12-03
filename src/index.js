@@ -13,6 +13,11 @@ const upload = multer({
 });
 
 app.use(express.json({ limit: '50mb' }));
+app.use(express.static('public'));
+
+app.get('/', (req, res) => {
+  res.sendFile('index.html', { root: 'public' });
+});
 
 app.post('/api/generate', async (req, res) => {
   try {
