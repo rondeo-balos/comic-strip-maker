@@ -76,6 +76,7 @@ export function generateHTML(comicData) {
     return `
       <div class="row" style="
         grid-template-columns: ${gridTemplateColumns};
+        gap: 10px;
       ">
         ${panelsHTML}
       </div>
@@ -107,7 +108,7 @@ export function generateHTML(comicData) {
           margin: 0 auto;
           display: flex;
           flex-direction: column;
-          gap: 0;
+          gap: 10px;
         }
 
         .title {
@@ -121,17 +122,15 @@ export function generateHTML(comicData) {
 
         .row {
           display: grid;
-          gap: 0;
-          margin-bottom: 0;
         }
 
         .panel {
           position: relative;
           background-color: #ffffff;
           overflow: hidden;
-          min-height: 300px;
           display: flex;
           flex-direction: column;
+          aspect-ratio: 4/3;
         }
 
         .panel-image {
@@ -139,7 +138,6 @@ export function generateHTML(comicData) {
           background-repeat: no-repeat;
           width: 100%;
           height: 100%;
-          min-height: 250px;
         }
 
         .speech-bubble {
