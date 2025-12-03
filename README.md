@@ -33,11 +33,11 @@ npm run dev
 
 The API will run on `http://localhost:3000` by default.
 
-## API Endpoint
+## API Endpoints
 
 ### POST `/api/generate`
 
-Generates a comic strip from JSON payload.
+Generates a comic strip from JSON payload with images as URLs or base64 data URIs.
 
 **Request Body:**
 
@@ -105,6 +105,73 @@ Generates a comic strip from JSON payload.
 - Content-Type: `image/png`
 - Body: PNG image buffer
 
+### POST `/api/generate-with-uploads`
+
+Generates a comic strip from uploaded image files. Use this endpoint to upload actual image files instead of providing URLs or base64 strings.
+
+**Request:**
+
+- Content-Type: `multipart/form-data`
+- Fields:
+  - `comicData` (required): JSON string containing the comic structure. Use placeholder strings like `"image0"`, `"image1"`, etc. in the `image` field
+  - `images` (required): One or more image files (up to 20 files, 10MB each max)
+
+**Example with cURL:**
+
+```bash
+curl -X POST http://localhost:3000/api/generate-with-uploads \
+  -F "comicData=@example-upload.json" \
+  -F "images=@photo1.jpg" \
+  -F "images=@photo2.jpg" \
+  -F "images=@photo3.jpg" \
+  --output comic.png
+```
+
+**Example comicData JSON:**
+
+```json
+{
+  "title": "My Uploaded Comic",
+  "rows": [
+    {
+      "columns": 2,
+      "panels": [
+        {
+          "image": "image0",
+          "dialogBubbles": [
+            {
+              "text": "First panel uses first uploaded image!",
+              "position": { "top": "20%", "left": "10%" },
+              "type": "speech"
+            }
+          ]
+        },
+        {
+          "image": "image1",
+          "dialogBubbles": [
+            {
+              "text": "Second panel uses second image!",
+              "position": { "top": "30%", "left": "60%" },
+              "type": "thought"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+**Response:**
+
+- Content-Type: `image/png`
+- Body: PNG image buffer
+
+**Notes:**
+- Images are matched by index: `"image0"` → first uploaded file, `"image1"` → second uploaded file, etc.
+- Upload images in the same order as they appear in your comic
+- Supported formats: JPEG, PNG, GIF, WebP
+
 ## JSON Schema
 
 ### Root Object
@@ -128,7 +195,7 @@ Generates a comic strip from JSON payload.
 
 | Field | Type | Required | Default | Description |
 |-------|------|----------|---------|-------------|
-| `image` | string | Yes | - | Image URL or base64 data URI |
+| `image` | string | Yes | - | Image URL, base64 data URI, or placeholder (e.g., "image0" for uploads) |
 | `imagePosition` | string | No | "center" | CSS background-position |
 | `imageSize` | string | No | "cover" | CSS background-size |
 | `borderStyle` | string | No | "solid" | CSS border-style |
