@@ -35,6 +35,7 @@ RUN npm ci --only=production
 
 # Copy application code
 COPY src ./src
+COPY public ./public
 
 EXPOSE 3000
 
