@@ -14,10 +14,10 @@ const PORT = process.env.PORT || 3000;
 const storage = multer.memoryStorage();
 const upload = multer({ 
   storage: storage,
-  limits: { fileSize: 50 * 1024 * 1024 } // 50MB per file
+  limits: { fileSize: 512 * 1024 * 1024 } // 50MB per file
 });
 
-app.use(express.json({ limit: '256mb' }));
+app.use(express.json({ limit: '512mb' }));
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('/', (req, res) => {
