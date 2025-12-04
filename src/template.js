@@ -2,7 +2,7 @@ export function generateHTML(comicData) {
   const { rows, title, backgroundColor = '#ffffff' } = comicData;
 
   const rowsHTML = rows.map((row, rowIndex) => {
-    const columns = row.columns || 2;
+    const columns = row.columns || 1;
     const panels = row.panels || [];
     
     const gridTemplateColumns = columns === 1 ? '1fr' : '1fr 1fr';
