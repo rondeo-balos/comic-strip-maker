@@ -10,14 +10,20 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Configure body parser limits BEFORE routes
+app.use(express.json({ limit: '512mb' }));
+app.use(express.urlencoded({ limit: '512mb', extended: true }));
+
 // Configure multer for file uploads (store in memory)
 const storage = multer.memoryStorage();
 const upload = multer({ 
   storage: storage,
-  limits: { fileSize: 512 * 1024 * 1024 } // 50MB per file
+  limits: { 
+    fileSize: 512 * 1024 * 1024, // 512MB per file
+    fieldSize: 512 * 1024 * 1024  // 512MB for other fields
+  }
 });
 
-app.use(express.json({ limit: '512mb' }));
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('/', (req, res) => {
